@@ -3,22 +3,22 @@ package com.sdc.dataservice.model;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.sdc.data.model.BaseEntity;
 import com.sdc.data.model.View;
-import io.swagger.annotations.ApiModel;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+import io.swagger.v3.oas.annotations.media.Schema;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 
-@ApiModel(value = "AbstractProduct")
+@Schema(description = "AbstractProduct")
 @JsonView(View.Default.class)
 public abstract class AbstractProduct extends BaseEntity {
 
-    @NotEmpty(message = "{data-service.name.not-empty}")
+    @NotEmpty(message = "service.product-name.not-empty")
     private String name;
 
-    @NotEmpty(message = "{data-service.description.not-empty}")
+    @NotEmpty(message = "service.product-description.not-empty")
     private String description;
 
-    @NotNull(message = "{data-service.price.not-null}")
+    @NotNull(message = "service.product-price.not-null")
     private Double price;
 
     private Boolean stock = true;
@@ -26,10 +26,10 @@ public abstract class AbstractProduct extends BaseEntity {
 
     public AbstractProduct() {}
 
-    public AbstractProduct(String name, String description, Double unitPrice) {
+    public AbstractProduct(String name, String description, Double price) {
         this.name = name;
         this.description = description;
-        this.price = unitPrice;
+        this.price = price;
     }
 
     public String getName() {
@@ -48,11 +48,11 @@ public abstract class AbstractProduct extends BaseEntity {
         this.description = description;
     }
 
-    public Double getUnitPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setUnitPrice(Double unitPrice) {
+    public void setPrice(Double unitPrice) {
         this.price = unitPrice;
     }
 
@@ -68,7 +68,7 @@ public abstract class AbstractProduct extends BaseEntity {
         return "{\"AbstractProduct\":{ " +
             "\"name\":\"" + name + "\"," +
             "\"description\":\"" + description + "\"," +
-            "\"unitPrice\":\"" + price + "\"," +
+            "\"price\":\"" + price + "\"," +
             "\"stock\":\"" + stock + "\"" +
             "\"}}";
     }

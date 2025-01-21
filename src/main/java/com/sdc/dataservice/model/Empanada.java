@@ -20,7 +20,4 @@ public class Empanada extends AbstractProduct {
     public void setFullDozenPrice(Double fullDozenPrice) {
         this.fullDozenPrice = fullDozenPrice;
     }
-
-
-
 }
